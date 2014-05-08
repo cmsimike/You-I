@@ -22,7 +22,7 @@ public class Ship extends BaseUnit {
   // TODO may want ot increase this?
   // so 600 orbital days = 600 minutes
   @Override
-  public void update(long millis) {
+  public void progressUnit(long millis) {
 
   }
 

@@ -11,7 +11,7 @@ public class Star extends CircularUnit {
   }
 
   @Override
-  public void update(long millis) {
+  public void progressUnit(long delta) {
 
   }
 }

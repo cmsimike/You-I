@@ -3,11 +3,9 @@ package com.xekm.youi.game.unit;
 import org.newdawn.slick.Color;
 
 public class Planet extends CircularUnit {
-
   private Star orbitStar = null;
 
   private double orbitalRealTimeMs;
-  private double counterMs;
 
   public Planet(String name, long x, long y, long radius, Color color, Star star, int orbitDays) {
     super(x, y, radius, color);
@@ -25,13 +23,11 @@ public class Planet extends CircularUnit {
   // so 600 orbital days = 600 minutes
   //http://math.stackexchange.com/questions/266832/x-and-y-coordinates-of-circle-giving-a-center-radius-and-angle
   @Override
-  public void update(long millis) {
+  public void progressUnit(long delta) {
     //System.err.println(this + " " + this.getDistanceToStar());
-    this.counterMs = this.counterMs + millis;
-    if (this.counterMs > this.orbitalRealTimeMs) {
-      this.counterMs = this.counterMs - this.orbitalRealTimeMs;
-    }
-    double theta = (2 * Math.PI) * (double) (this.counterMs / (this.orbitalRealTimeMs));
+
+    double change = (this.counterMs % this.orbitalRealTimeMs) / (this.orbitalRealTimeMs);
+    double theta = (2 * Math.PI) * change;
     long _x = this.orbitStar.getX() + (long) (this.getDistanceToStar() * Math.cos(theta));
     long _y = this.orbitStar.getY() + (long) (this.getDistanceToStar() * Math.sin(theta));
 
