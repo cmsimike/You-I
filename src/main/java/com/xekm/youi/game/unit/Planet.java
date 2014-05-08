@@ -4,15 +4,15 @@ import org.newdawn.slick.Color;
 
 public class Planet extends CircularUnit {
 
-  private Star orbitStar = null;
+  private CircularUnit orbitingUnit = null;
 
   private double orbitalRealTimeMs;
 
-  public Planet(String name, long x, long y, long radius, Color color, Star star, int orbitDays) {
+  public Planet(String name, long x, long y, long radius, Color color, CircularUnit unit, int orbitDays) {
     super(x, y, radius, color);
 
     this.setName(name);
-    this.orbitStar = star;
+    this.orbitingUnit = unit;
     this.orbitalRealTimeMs = orbitDays * 60 * 1000;
 
     System.err.println(this + " init: orbitDays " + orbitDays + "   this.orbitalRealTimeMs "
@@ -34,16 +34,16 @@ public class Planet extends CircularUnit {
 
     double change = (this.counterMs % this.orbitalRealTimeMs) / (this.orbitalRealTimeMs);
     double theta = (2 * Math.PI) * change;
-    long _x = this.orbitStar.getX() + (long) (this.getDistanceToStar() * Math.cos(theta));
-    long _y = this.orbitStar.getY() + (long) (this.getDistanceToStar() * Math.sin(theta));
+    long _x = this.orbitingUnit.getX() + (long) (this.getDistanceToStar() * Math.cos(theta));
+    long _y = this.orbitingUnit.getY() + (long) (this.getDistanceToStar() * Math.sin(theta));
 
     this.setX(_x);
     this.setY(_y);
   }
 
   private double getDistanceToStar() {
-    long x = (this.getX() - this.orbitStar.getX());
-    long y = (this.getY() - this.orbitStar.getY());
+    long x = (this.getX() - this.orbitingUnit.getX());
+    long y = (this.getY() - this.orbitingUnit.getY());
     long dSq = (x * x) + (y * y);
     return Math.sqrt(dSq);
   }
