@@ -8,7 +8,8 @@ public class Planet extends CircularUnit {
 
   private double orbitalRealTimeMs;
 
-  public Planet(String name, long x, long y, long radius, Color color, CircularUnit unit, int orbitDays) {
+  public Planet(String name, long x, long y, long radius, Color color, CircularUnit unit,
+                int orbitDays) {
     super(x, y, radius, color);
 
     this.setName(name);
@@ -45,6 +46,7 @@ public class Planet extends CircularUnit {
     long x = (this.getX() - this.orbitingUnit.getX());
     long y = (this.getY() - this.orbitingUnit.getY());
     long dSq = (x * x) + (y * y);
+
     return Math.sqrt(dSq);
   }
 

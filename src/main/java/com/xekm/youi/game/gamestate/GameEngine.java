@@ -33,13 +33,6 @@ public class GameEngine extends YouIGameState {
     this.addUnit(this.earth);
     this.addUnit(new Planet("Moon", 150384400, 0L, 350000L, Color.gray, this.earth, 28));
     this.addUnit(new Planet("Mars", 228000000L, 0L, 695500L/*6794L*/, Color.red, sun, 687));
-//
-//    this.addUnit(new Star("Sun", 0L, 0L, 695500L));
-//    this.addUnit(new Planet("Mercury", 57000000L, 0L, 4880L, Color.gray));
-//    this.addUnit(new Planet("Venus", 108000000L, 0L, 12104L, new Color(255, 255, 214, 255)));
-//    this.addUnit(new Planet("Earth", 150000000L, 0L, 12756L, Color.blue));
-//    this.addUnit(new Planet("Mars", 228000000L, 0L, 6794L, Color.red));
-//    this.addUnit(new Ship());
   }
 
   public void progress(int delta) {
@@ -130,11 +123,11 @@ public class GameEngine extends YouIGameState {
   @Override
   public void keyReleased(int key, char c) {
 
-    if (key == Input.KEY_E){
+    if (key == Input.KEY_E) {
       float x = earth.getX();
       float y = earth.getY();
-      this.centerX = -(x/this.scale);
-      this.centerY = -(y/this.scale);
+      this.centerX = -(x / this.scale);
+      this.centerY = -(y / this.scale);
     }
     this.keyDown[key] = false;
   }
