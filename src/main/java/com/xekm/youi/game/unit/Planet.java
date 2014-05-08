@@ -3,6 +3,7 @@ package com.xekm.youi.game.unit;
 import org.newdawn.slick.Color;
 
 public class Planet extends CircularUnit {
+
   private Star orbitStar = null;
 
   private double orbitalRealTimeMs;
@@ -24,16 +25,17 @@ public class Planet extends CircularUnit {
   //http://math.stackexchange.com/questions/266832/x-and-y-coordinates-of-circle-giving-a-center-radius-and-angle
   @Override
   public void progressUnit(long delta) {
-    //System.err.println(this + " " + this.getDistanceToStar());
+    this.updateLocation(delta);
+
+    //TODO update gravity pull on objects near?
+  }
+
+  private void updateLocation(long delta) {
 
     double change = (this.counterMs % this.orbitalRealTimeMs) / (this.orbitalRealTimeMs);
     double theta = (2 * Math.PI) * change;
     long _x = this.orbitStar.getX() + (long) (this.getDistanceToStar() * Math.cos(theta));
     long _y = this.orbitStar.getY() + (long) (this.getDistanceToStar() * Math.sin(theta));
-
-//      System.err.println(this + " x, y " + this.getX() + "   "  + this.getY());
-//      System.err.println("theta " + theta);
-//      System.err.println("this.counterMs " + this.counterMs);
 
     this.setX(_x);
     this.setY(_y);

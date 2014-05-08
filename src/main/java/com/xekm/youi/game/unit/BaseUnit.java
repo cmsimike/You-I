@@ -47,7 +47,7 @@ public abstract class BaseUnit {
     return this.getClass().getSimpleName() + " named " + this.name;
   }
 
-  public final void update(long millis){
+  public final void update(long millis) {
     this.counterMs = this.counterMs + millis;
     this.progressUnit(millis);
   }

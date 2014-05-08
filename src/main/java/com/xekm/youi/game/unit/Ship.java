@@ -6,7 +6,9 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
 public class Ship extends BaseUnit {
+
   private int thrust;
+
   public Ship() {
     super(Color.darkGray, 1, 1);
   }
