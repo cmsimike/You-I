@@ -64,12 +64,5 @@ public class Planet extends CircularUnit {
   public void render(Graphics g) {
     super.render(g);
 
-    g.setColor(Color.green);
-    if (this.toString().contains("oon")) {
-      System.err.printf("render: %s %s \n", this.getX(), this.getY());
-      Line l = new Line(this.getX(), this.getY(), this.orbitingUnit.getX(), this.orbitingUnit.getY());
-      g.fill(l);
-    }
-
   }
 }
