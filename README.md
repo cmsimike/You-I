@@ -26,8 +26,9 @@ I'm not married to any of the current values for anything.
 
 
 ### Keys
-1. Up/down/left/right to move the view port to see more of th solar system.
-2. [ and ] to zoom in and out. Basically useless at the scales i'm talking about now.
+1. Up/down/left/right - move the view port to see more of th solar system.
+2. [ and ] - zoom in and out. Basically useless at the scales i'm talking about now.
+3. e - center and scale around earth and start tracking. You can zoom out and see the moon. You will not be able to move around anymore though.
 
 
 ### Technology
