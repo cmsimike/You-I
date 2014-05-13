@@ -1,6 +1,7 @@
 package com.xekm.youi.game.unit;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Shape;
 
 public abstract class BaseUnit {
@@ -53,5 +54,7 @@ public abstract class BaseUnit {
   }
 
   protected abstract void progressUnit(long delta);
+
+  public abstract void render(Graphics g);
 
 }
