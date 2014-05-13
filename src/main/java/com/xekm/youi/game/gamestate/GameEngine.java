@@ -16,7 +16,7 @@ public class GameEngine extends YouIGameState {
   private List<BaseUnit> units;
   private float centerX = 0f;
   private float centerY = 0f;
-  private float scale = 50000f;
+  private float scale = 13f;
   private boolean[] keyDown = new boolean[0xDF];
 
   public GameEngine(int stateId) {
@@ -25,14 +25,14 @@ public class GameEngine extends YouIGameState {
 
     Star sun = new Star("Sun", 0L, 0L, 695500L);
     this.addUnit(sun);
-    this.addUnit(new Planet("Mercury", 57000000L, 0L, 695500L/*4880L*/, Color.gray, sun, 88));
+    this.addUnit(new Planet("Mercury", 57000000L, 0L, 4880L, Color.gray, sun, 88));
     this.addUnit(
-        new Planet("Venus", 108000000L, 0L, 695500L/*12104L*/, new Color(255, 255, 214, 255), sun,
+        new Planet("Venus", 108000000L, 0L, 12104L, new Color(255, 255, 214, 255), sun,
                    225));
-    this.earth = new Planet("Earth", 150000000L, 0L, 695500L/*12756L*/, Color.blue, sun, 365);
+    this.earth = new Planet("Earth", 150000000L, 0L, 12756L, Color.blue, sun, 365);
     this.addUnit(this.earth);
-    this.addUnit(new Planet("Moon", 150384400, 0L, 350000L, Color.gray, this.earth, 28));
-    this.addUnit(new Planet("Mars", 228000000L, 0L, 695500L/*6794L*/, Color.red, sun, 687));
+    this.addUnit(new Planet("Moon", 150384400, 0L, 13473L, Color.gray, this.earth, 28));
+    this.addUnit(new Planet("Mars", 228000000L, 0L, 6794L, Color.red, sun, 687));
   }
 
   public void progress(int delta) {
@@ -54,6 +54,12 @@ public class GameEngine extends YouIGameState {
     }
     if (this.keyDown[Input.KEY_LBRACKET]) {
       this.scale = this.scale + 8;
+    }
+    if (this.keyDown[Input.KEY_E]) {
+      float x = earth.getX();
+      float y = earth.getY();
+      this.centerX = -(x / this.scale);
+      this.centerY = -(y / this.scale);
     }
 
     for (BaseUnit b : this.units) {
@@ -79,10 +85,8 @@ public class GameEngine extends YouIGameState {
 //    System.err.println("screen height = " + gc.getHeight());
     g.translate(this.centerX + (gc.getWidth() / 2), this.centerY + (gc.getHeight() / 2));
     g.scale((1 / (this.scale)), (1 / (this.scale)));
-
     for (BaseUnit b : this.units) {
-      g.setColor(b.getColor());
-      g.fill(b.getShape());
+      b.render(g);
     }
   }
 
@@ -122,18 +126,17 @@ public class GameEngine extends YouIGameState {
 
   @Override
   public void keyReleased(int key, char c) {
-
     if (key == Input.KEY_E) {
-      float x = earth.getX();
-      float y = earth.getY();
-      this.centerX = -(x / this.scale);
-      this.centerY = -(y / this.scale);
+      this.keyDown[Input.KEY_E] = !this.keyDown[Input.KEY_E];
+    } else {
+      this.keyDown[key] = false;
     }
-    this.keyDown[key] = false;
   }
 
   @Override
   public void keyPressed(int key, char c) {
-    this.keyDown[key] = true;
+    if (!(key == Input.KEY_E)) {
+      this.keyDown[key] = true;
+    }
   }
 }
