@@ -13,7 +13,7 @@ A space exploration game
 9. MAYBE planets and stars that form over time if i can scale it correctly?
 10. You are sitting in NASA-type room monitoring all your space ships. Maybe, as an upgrade through the game, we expose the openGL portion of it again as relays from space.
 
-The game, based on orbit time, scales in game day to one real life minute. So setting Mercury to have a rotational period of 88 days means it will take 88 seconds in real life.
+The game, based on orbit time, scales one in game day to one real life minute. So setting Mercury to have a rotational period of 88 days means it will take 88 minutes in real life.
 
 I am using long to store coordinates of the entire universe in km. At the scales i'm talking about, km is granular enough I think.
 
